@@ -8,6 +8,8 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.sql.SQLException;
 
 /**
  *
@@ -35,12 +37,12 @@ public class update extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try {
-                con= DriverManager.getConnection("jdbc:mysql://localhost/Food","root","");
+                con= DriverManager.getConnection("jdbc:mysql://localhost/RMS","root","");
             } catch (SQLException ex) {
-                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(update.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(update.class.getName()).log(Level.SEVERE, null, ex);
         }
             
         }
@@ -62,91 +64,333 @@ public class update extends javax.swing.JFrame {
         txtprice = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtquantity = new javax.swing.JSpinner();
         txtcategory = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         txtitem = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtitemcode = new javax.swing.JTextField();
-        back = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        txtportion = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        newtable = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        pretable = new javax.swing.JTable();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(660, 480));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 30)); // NOI18N
         jLabel1.setText("Update Items");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 16, 260, 80));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 240, 80));
 
+        jButton1.setBackground(new java.awt.Color(255, 0, 51));
         jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Update");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(293, 419, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 610, -1, 40));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel3.setText("Item Name :");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 229, -1, -1));
-        getContentPane().add(txtitemname, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 223, 300, 32));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, -1, -1));
+        getContentPane().add(txtitemname, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 300, 40));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel4.setText("Category :");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 280, -1, -1));
-        getContentPane().add(txtprice, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 319, 300, 32));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
+        getContentPane().add(txtprice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 550, 300, 40));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel5.setText("Price :");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 325, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 560, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel6.setText("Quantity :");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 375, -1, -1));
+        jLabel6.setText("Portion :");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, -1, -1));
 
-        txtquantity.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        getContentPane().add(txtquantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 369, 100, 32));
-
-        txtcategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rice", "Porridge", "Noodles", "Soup" }));
-        getContentPane().add(txtcategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 273, 126, 32));
+        txtcategory.setBackground(new java.awt.Color(255, 0, 51));
+        txtcategory.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        txtcategory.setForeground(new java.awt.Color(255, 255, 255));
+        txtcategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rice", "Kottu", "Noodles", "Soup", "Desserts", "Beverages" }));
+        getContentPane().add(txtcategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, 126, 40));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel2.setText("Item Code :");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 114, -1, -1));
-        getContentPane().add(txtitem, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 103, 231, 32));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, -1, -1));
+        getContentPane().add(txtitem, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 231, 40));
 
+        jButton4.setBackground(new java.awt.Color(255, 0, 51));
         jButton4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Search");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 102, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, -1, 40));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel7.setText("Item Code :");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 179, -1, -1));
-        getContentPane().add(txtitemcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 173, 300, 32));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, -1, -1));
+        getContentPane().add(txtitemcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 300, 40));
 
-        back.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        back.setText("Back");
-        back.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backActionPerformed(evt);
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home copy.png"))); // NOI18N
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
             }
         });
-        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 40, -1));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/categories copy.png"))); // NOI18N
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 40, -1));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add copy.png"))); // NOI18N
+        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 40, -1));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/update.png"))); // NOI18N
+        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 40, -1));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/del.png"))); // NOI18N
+        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel16MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 40, -1));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/settings copy.png"))); // NOI18N
+        jLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel17MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 40, -1));
+
+        jPanel1.setBackground(new java.awt.Color(153, 0, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 70, 70));
+
+        txtportion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "R", "L", "" }));
+        getContentPane().add(txtportion, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, 126, 40));
+
+        jLabel12.setText("R- Regular  L- Large");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 500, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel13.setText("After Update");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 470, -1, -1));
+
+        jLabel18.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel18.setText("Before Update");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, -1, -1));
+
+        newtable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item Code", "Item Name", "Portion", "Price"
+            }
+        ));
+        jScrollPane1.setViewportView(newtable);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 510, 330, 160));
+
+        pretable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item Code", "Item Name", "Portion", "Price"
+            }
+        ));
+        jScrollPane2.setViewportView(pretable);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, 330, 160));
+
+        jLabel19.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel19.setText("Recently updated Items");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 190, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/casdrt.png"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, -50, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        jLabel20.setText("Update Foods");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/insert.png"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 714));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+   String cat;
+    String itemcode2,itemname1,portion1;
+    float price1;
+    void Show(){
+        try {
+                // TODO add your handling code here:
+                 itemcode1=txtitem.getText();
+                
+                pst= con.prepareStatement("SELECT * FROM "+cat+" WHERE `ItemCode`=?");
+                //pst.setString(1, cat);
+                pst.setString(1, itemcode1);
+                rs = pst.executeQuery();
+                
+                if(rs.next()){
+                    
+                   txtitemcode.setText(rs.getString("ItemCode"));
+                   txtitemname.setText(rs.getString("ItemName"));
+                   txtportion.setSelectedItem(rs.getString("Portion"));
+                   txtprice.setText(rs.getString("Price"));
+                   
+                   itemcode2 = txtitemcode.getText();
+                   itemname1 = txtitemname.getText();
+                   portion1 = txtportion.getSelectedItem().toString();
+                   price1 = Float.valueOf(txtprice.getText());
+                   
+                }else{
+                    JOptionPane.showMessageDialog(this, "No Item Found");
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(update.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      }
+    String itemcode,itemname,portion;
+    float price;
+    boolean b=false;
+    void update(){
+        itemcode = txtitemcode.getText();
+        itemname = txtitemname.getText();
+         portion = txtportion.getSelectedItem().toString();
+        
+         price = Float.valueOf(txtprice.getText());
+        
+      
+        
+     
+        
+        if(itemcode.equals("") || itemname.equals("") || price<0  ){
+            JOptionPane.showMessageDialog(this, "Fill all");
+        } else{
+    
             try {
+  
+            pst = con.prepareStatement("UPDATE "+cat+" SET `ItemCode`=?,`ItemName`=?,`Portion`=?, `Price`=? WHERE `ItemCode`=? ");
+            
+            
+            pst.setString(1, itemcode);
+            pst.setString(2, itemname);
+            pst.setString(3, portion);
+            pst.setFloat(4, price);
+            pst.setString(5, itemcode1);
+            
+            
+            
+            pst.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this, "Update Successfully");
+            b = true;
+            txtitemcode.setText("");
+            txtitemname.setText("");
+            txtportion.setSelectedItem("R");
+            txtprice.setText("");
+            
+            
+            
+              
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(update.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }   
+    }
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+            
+        cat = txtcategory.getSelectedItem().toString();
+        
+        if(cat.equals("Rice")){
+            Show();
+            
+        }
+        if(cat.equals("Kottu")){
+            Show();
+            
+        }
+        if(cat.equals("Noodles")){
+            Show();
+            
+        }
+        if(cat.equals("Soup")){
+            Show();
+            
+        }
+        if(cat.equals("Desserts")){
+            Show();
+            
+        }
+        if(cat.equals("Beverages")){
+            Show();
+            
+        }
+       
+        
+      /*  try {
                 // TODO add your handling code here:
                  itemcode1=txtitem.getText();
                 
@@ -157,7 +401,7 @@ public class update extends javax.swing.JFrame {
                     
                    txtitemcode.setText(rs.getString("ItemCode"));
                    txtitemname.setText(rs.getString("ItemName"));
-                   txtcategory.setSelectedItem(rs.getString(4));
+                   
                    txtprice.setText(rs.getString("Price"));
                    txtquantity.setValue(rs.getInt("Quantity"));
                    
@@ -168,68 +412,112 @@ public class update extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(update.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+        */
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       
-        String itemcode = txtitemcode.getText();
-        String itemname = txtitemname.getText();
-        String category = txtcategory.getSelectedItem().toString();
-        //String price = txtprice.getText();
-        int price = Integer.parseInt(txtprice.getText());
-        String quantity = txtquantity.getValue().toString();
-      
+       cat = txtcategory.getSelectedItem().toString();
         
-     
-        
-        if(itemcode.equals("") || itemname.equals("") || category.equals("") || price<0  ){
-            JOptionPane.showMessageDialog(this, "Fill all");
-        } else{
+        if(cat.equals("Rice")){
+            update();
             
- 
-   
-            try {
-                
-             
-             
-            pst = con.prepareStatement("UPDATE FoodItems SET ItemCode=?,ItemName=?,Category=?, Price=?, Quantity=? WHERE ItemCode='"+itemcode1+"' ");
-            
-            
-            pst.setString(1, itemcode);
-            pst.setString(2, itemname);
-            pst.setString(3, category);
-            pst.setInt(4, price);
-            pst.setString(5, quantity);
-            
-            
-            
-            pst.executeUpdate();
-            
-            JOptionPane.showMessageDialog(this, "Update Successfully");
-            
-            txtitemcode.setText("");
-            txtitemname.setText("");
-            txtcategory.setSelectedItem("Rice");
-            txtprice.setText("");
-            txtquantity.setValue(0);
-            
-            
-              
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(signup.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }   
+        if(cat.equals("Kottu")){
+            
+            update();
+            
+        }
+        if(cat.equals("Noodles")){
+            update();
+            
+        }
+        if(cat.equals("Soup")){
+            update();
+            
+        }
+        if(cat.equals("Desserts")){
+            update();
+            
+        }
+        if(cat.equals("Beverages")){
+            update();
+            
+        }
+        
+        if(b==true){
+            DefaultTableModel model = new DefaultTableModel();
+        
+           model = (DefaultTableModel)newtable.getModel();
+
+           model.addRow(new Object[]
+                
+        {
+        
+           itemcode,
+           itemname,
+           portion,
+           price,
+           
+         
+        });
+           
+           DefaultTableModel model2 = new DefaultTableModel();
+        
+           model2 = (DefaultTableModel)pretable.getModel();
+
+           model2.addRow(new Object[]
+                
+        {
+        
+           itemcode2,
+           itemname1,
+           portion1,
+           price1,
+           
+         
+        });
+        }
+         
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
         new dashboard().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_backActionPerformed
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+        new category().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        // TODO add your handling code here:
+        new insert().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        // TODO add your handling code here:
+        new update().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+        // TODO add your handling code here:
+        new delete().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel16MouseClicked
+
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+        // TODO add your handling code here:
+         new settings().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel17MouseClicked
 
     /**
      * @param args the command line arguments
@@ -267,21 +555,38 @@ public class update extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton back;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable newtable;
+    private javax.swing.JTable pretable;
     private javax.swing.JComboBox<String> txtcategory;
     private javax.swing.JTextField txtitem;
     private javax.swing.JTextField txtitemcode;
     private javax.swing.JTextField txtitemname;
+    private javax.swing.JComboBox<String> txtportion;
     private javax.swing.JTextField txtprice;
-    private javax.swing.JSpinner txtquantity;
     // End of variables declaration//GEN-END:variables
 }

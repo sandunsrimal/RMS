@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -39,6 +40,7 @@ public class insert extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtitemcode = new javax.swing.JTextField();
@@ -48,204 +50,425 @@ public class insert extends javax.swing.JFrame {
         txtprice = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtquantity = new javax.swing.JSpinner();
-        txtcategory = new javax.swing.JComboBox<>();
+        txtportion = new javax.swing.JComboBox<>();
         addbtn = new javax.swing.JButton();
-        back = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        txtcategory = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TemTable = new javax.swing.JTable();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         jLabel7.setText("jLabel7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 30)); // NOI18N
         jLabel1.setText("Insert Items");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 220, 80));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel2.setText("Item Code :");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, -1));
+        getContentPane().add(txtitemcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 300, 40));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel3.setText("Item Name :");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
+        getContentPane().add(txtitemname, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 300, 40));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel4.setText("Category :");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, -1, -1));
+
+        txtprice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtpriceKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtprice, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 520, 300, 40));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel5.setText("Price :");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel6.setText("Quantity :");
+        jLabel6.setText("Portion :");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, -1, -1));
 
-        txtquantity.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        txtportion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "R", "L", "" }));
+        getContentPane().add(txtportion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, 126, 40));
 
-        txtcategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rice", "Porridge", "Noodles", "Soup" }));
-
+        addbtn.setBackground(new java.awt.Color(255, 0, 51));
         addbtn.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        addbtn.setForeground(new java.awt.Color(255, 255, 255));
         addbtn.setText("Add Item");
         addbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addbtnActionPerformed(evt);
             }
         });
+        getContentPane().add(addbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 590, -1, 40));
 
-        back.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        back.setText("Back");
-        back.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backActionPerformed(evt);
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home copy.png"))); // NOI18N
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 40, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(47, 47, 47)
-                        .addComponent(txtitemcode, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtitemname, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel6))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtprice, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtcategory, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(174, 174, 174))))
-                .addGap(121, 121, 121))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(back)
-                        .addGap(140, 140, 140)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(addbtn)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/categories copy.png"))); // NOI18N
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 40, -1));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add copy.png"))); // NOI18N
+        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 40, -1));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/update.png"))); // NOI18N
+        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 40, -1));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/del.png"))); // NOI18N
+        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel16MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 40, -1));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/settings copy.png"))); // NOI18N
+        jLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel17MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 40, -1));
+
+        jPanel1.setBackground(new java.awt.Color(153, 0, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(back)))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtitemcode, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtitemname, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtcategory, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtprice, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(28, 28, 28)
-                .addComponent(addbtn)
-                .addContainerGap(65, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 70, 70));
+
+        txtcategory.setBackground(new java.awt.Color(255, 0, 51));
+        txtcategory.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        txtcategory.setForeground(new java.awt.Color(255, 255, 255));
+        txtcategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rice", "Kottu", "Noodles", "Soup", "Desserts", "Beverages" }));
+        getContentPane().add(txtcategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 126, 40));
+
+        jLabel12.setText("R- Regular  L- Large");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, -1, -1));
+
+        TemTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item Code", "Item Name", "Category", "Portion", "Price"
+            }
+        ));
+        jScrollPane1.setViewportView(TemTable);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 237, 330, 430));
+
+        jLabel13.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel13.setText("Recently added Items");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 190, -1, -1));
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/casdrt.png"))); // NOI18N
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, -50, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        jLabel19.setText("Insert Foods");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/insert.png"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 714));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        // TODO add your handling code here:
-        new dashboard().setVisible(true);
-         this.setVisible(false);
-    }//GEN-LAST:event_backActionPerformed
-
     private void addbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbtnActionPerformed
         // TODO add your handling code here:
-        
+        boolean tr=false;
         String itemcode = txtitemcode.getText();
         String itemname = txtitemname.getText();
         String category = txtcategory.getSelectedItem().toString();
-        //String price = txtprice.getText();
-        int price = Integer.parseInt(txtprice.getText());
-        String quantity = txtquantity.getValue().toString();
-      
+       
+        String price = String.valueOf(txtprice.getText());
+        String portion = txtportion.getSelectedItem().toString();
         
         // || quantity.equals("")
         
-        if(itemcode.equals("") || itemname.equals("") || category.equals("") || price<0  ){
+        if(itemcode.equals("") || itemname.equals("") || price.equals("") ){
             JOptionPane.showMessageDialog(this, "Fill all");
         } else{
 
-   
             try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con2= DriverManager.getConnection("jdbc:mysql://localhost/RMS","root","");
                 
-              
-                
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con2= DriverManager.getConnection("jdbc:mysql://localhost/Food","root","");
-            
-           
-            
-            
-             pst = con2.prepareStatement("SELECT ItemCode FROM FoodItems WHERE ItemCode = '" + itemcode + "'  ");
+            if(category.equals("Rice")){
+                pst = con2.prepareStatement("SELECT ItemCode FROM Rice WHERE ItemCode =?  ");
+             pst.setString(1, itemcode);
+             ResultSet rs = pst.executeQuery();
              
-              ResultSet rs = pst.executeQuery();
-              
-              
-              if(rs.next()){
+             if(rs.next()){
                   JOptionPane.showMessageDialog(this, "Already Exsist");
                   
               }else{
-            pst2 = con2.prepareStatement("INSERT INTO `FoodItems`( `ItemCode`, `ItemName`, `Category`, `Price`, `Quantity`) VALUES (?,?,?,?,?)");
+            pst2 = con2.prepareStatement("INSERT INTO `Rice`( `ItemCode`, `ItemName`, `Portion`, `Price`) VALUES (?,?,?,?)");
             
             pst2.setString(1, itemcode);
             pst2.setString(2, itemname);
-            pst2.setString(3, category);
-            pst2.setInt(4, price);
-            pst2.setString(5, quantity);
-            
-            
+            pst2.setString(3, portion);
+            pst2.setString(4, price);
+   
             pst2.executeUpdate();
             
             JOptionPane.showMessageDialog(this, "Insert Successfully");
             
             txtitemcode.setText("");
             txtitemname.setText("");
-            txtcategory.setSelectedItem("Rice");
+            txtportion.setSelectedItem("Rice");
             txtprice.setText("");
-            txtquantity.setValue(0);
             
+            tr=true;
             
               }
+             
+             
+            }
+            
+             if(category.equals("Kottu")){
+                pst = con2.prepareStatement("SELECT ItemCode FROM Kottu WHERE ItemCode =?  ");
+             pst.setString(1, itemcode);
+             ResultSet rs = pst.executeQuery();
+             
+             if(rs.next()){
+                  JOptionPane.showMessageDialog(this, "Already Exsist");
+                  
+              }else{
+            pst2 = con2.prepareStatement("INSERT INTO `Kottu`( `ItemCode`, `ItemName`, `Portion`, `Price`) VALUES (?,?,?,?)");
+            
+            pst2.setString(1, itemcode);
+            pst2.setString(2, itemname);
+            pst2.setString(3, portion);
+            pst2.setString(4, price);
+   
+            pst2.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this, "Insert Successfully");
+            
+            txtitemcode.setText("");
+            txtitemname.setText("");
+            txtportion.setSelectedItem("Rice");
+            txtprice.setText("");
+            
+            tr=true;
+            
+              }
+             
+             
+            }
+             
+             if(category.equals("Noodles")){
+                pst = con2.prepareStatement("SELECT ItemCode FROM Noodles WHERE ItemCode =?  ");
+             pst.setString(1, itemcode);
+             ResultSet rs = pst.executeQuery();
+             
+             if(rs.next()){
+                  JOptionPane.showMessageDialog(this, "Already Exsist");
+                  
+              }else{
+            pst2 = con2.prepareStatement("INSERT INTO `Noodles`( `ItemCode`, `ItemName`, `Portion`, `Price`) VALUES (?,?,?,?)");
+            
+            pst2.setString(1, itemcode);
+            pst2.setString(2, itemname);
+            pst2.setString(3, portion);
+            pst2.setString(4, price);
+   
+            pst2.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this, "Insert Successfully");
+            
+            txtitemcode.setText("");
+            txtitemname.setText("");
+            txtportion.setSelectedItem("Rice");
+            txtprice.setText("");
+            
+            tr=true;
+            
+              }
+             
+             
+            }
+             
+             if(category.equals("Soup")){
+                pst = con2.prepareStatement("SELECT ItemCode FROM Soup WHERE ItemCode =?  ");
+             pst.setString(1, itemcode);
+             ResultSet rs = pst.executeQuery();
+             
+             if(rs.next()){
+                  JOptionPane.showMessageDialog(this, "Already Exsist");
+                  
+              }else{
+            pst2 = con2.prepareStatement("INSERT INTO `Soup`( `ItemCode`, `ItemName`, `Portion`, `Price`) VALUES (?,?,?,?)");
+            
+            pst2.setString(1, itemcode);
+            pst2.setString(2, itemname);
+            pst2.setString(3, portion);
+            pst2.setString(4, price);
+   
+            pst2.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this, "Insert Successfully");
+            
+            txtitemcode.setText("");
+            txtitemname.setText("");
+            txtportion.setSelectedItem("Rice");
+            txtprice.setText("");
+            
+            tr=true;
+            
+              }
+             
+             
+            }
+             
+             if(category.equals("Desserts")){
+                pst = con2.prepareStatement("SELECT ItemCode FROM Desserts WHERE ItemCode =?  ");
+             pst.setString(1, itemcode);
+             ResultSet rs = pst.executeQuery();
+             
+             if(rs.next()){
+                  JOptionPane.showMessageDialog(this, "Already Exsist");
+                  
+              }else{
+            pst2 = con2.prepareStatement("INSERT INTO `Desserts`( `ItemCode`, `ItemName`, `Portion`, `Price`) VALUES (?,?,?,?)");
+            
+            pst2.setString(1, itemcode);
+            pst2.setString(2, itemname);
+            pst2.setString(3, portion);
+            pst2.setString(4, price);
+   
+            pst2.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this, "Insert Successfully");
+            
+            txtitemcode.setText("");
+            txtitemname.setText("");
+            txtportion.setSelectedItem("Rice");
+            txtprice.setText("");
+            
+            tr=true;
+            
+              }
+             
+             
+            }
+             
+             if(category.equals("Beverages")){
+                pst = con2.prepareStatement("SELECT ItemCode FROM Beverages WHERE ItemCode =?  ");
+             pst.setString(1, itemcode);
+             ResultSet rs = pst.executeQuery();
+             
+             if(rs.next()){
+                  JOptionPane.showMessageDialog(this, "Already Exsist");
+                  
+              }else{
+            pst2 = con2.prepareStatement("INSERT INTO `Beverages`( `ItemCode`, `ItemName`, `Portion`, `Price`) VALUES (?,?,?,?)");
+            
+            pst2.setString(1, itemcode);
+            pst2.setString(2, itemname);
+            pst2.setString(3, portion);
+            pst2.setString(4, price);
+   
+            pst2.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this, "Insert Successfully");
+            
+            
+            
+         
+           
+           txtitemcode.setText("");
+            txtitemname.setText("");
+            txtportion.setSelectedItem("Rice");
+            txtprice.setText("");
+            
+            tr=true;
+              }
+             
+             
+            }
+             
+             if(tr==true){
+                    DefaultTableModel model = new DefaultTableModel();
+        
+           model = (DefaultTableModel)TemTable.getModel();
+
+           model.addRow(new Object[]
+                
+        {
+        
+           itemcode,
+           itemname,
+           category,
+           price,
+           portion,
+         
+        });
+             }
+            
+             
+
+            
             
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(signup.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(insert.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(signup.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(insert.class.getName()).log(Level.SEVERE, null, ex);
         }
         }   
             
@@ -253,6 +476,50 @@ public class insert extends javax.swing.JFrame {
        
  
     }//GEN-LAST:event_addbtnActionPerformed
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+        new category().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        // TODO add your handling code here:
+        new insert().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        // TODO add your handling code here:
+        new update().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+        // TODO add your handling code here:
+        new delete().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel16MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+        new dashboard().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void txtpriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpriceKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtpriceKeyTyped
+
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+        // TODO add your handling code here:
+         new settings().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel17MouseClicked
 
     /**
      * @param args the command line arguments
@@ -290,19 +557,33 @@ public class insert extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TemTable;
     private javax.swing.JButton addbtn;
-    private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> txtcategory;
     private javax.swing.JTextField txtitemcode;
     private javax.swing.JTextField txtitemname;
+    private javax.swing.JComboBox<String> txtportion;
     private javax.swing.JTextField txtprice;
-    private javax.swing.JSpinner txtquantity;
     // End of variables declaration//GEN-END:variables
 }

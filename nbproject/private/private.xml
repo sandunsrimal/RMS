@@ -3,20 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/Rice.java</file>
-            <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/Noodles.java</file>
-            <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/Soup.java</file>
             <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/login.java</file>
-            <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/bill.java</file>
             <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/insert.java</file>
-            <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/update.java</file>
-            <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/view.java</file>
-            <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/signup.java</file>
-            <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/Porridge.java</file>
-            <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/changepassword.java</file>
-            <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/category.java</file>
             <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/delete.java</file>
-            <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/dashboard.java</file>
+            <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/update.java</file>
+            <file>file:/Users/sandunsrimal/resturent%20management/RMS/src/rms/menu.java</file>
         </group>
     </open-files>
 </project-private>
